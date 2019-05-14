@@ -1,0 +1,34 @@
+<div class="panel panel-default" style="margin-top:10px;">
+<div class="panel-heading">
+    Publications
+</div>
+<div class="panel-body" style="position:relative">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th *ngFor="let attribute of attributes">
+						{{attribute}}
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let publication of publications">
+                    <td *ngFor="let attribute of attributes">
+						{{publication[attribute]}}
+                    </td>
+                    <td>
+		                <button (click)="delete(publication['id'])">delete</button>
+		                <button (click)="update(publication['id'])">update</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+	<button (click)="create()">new</button>
+
+    </div>
+</div>
