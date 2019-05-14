@@ -1,3 +1,44 @@
-<p>
-  publication-add works!
-</p>
+<form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+
+        <label class="col-xs-4 control-label" for="">Publication author: </label>
+        <div class="col-xs-8">
+            <input type="text" style="width: 300px" class="form-control" required
+                [(ngModel)]="publication.author" name="publicationAuthor">
+        </div>
+
+
+        <label class="col-xs-4 control-label" for="">Publication title: </label>
+        <div class="col-xs-8">
+            <input type="text" style="width: 300px" class="form-control" required
+                [(ngModel)]="publication.title" name="publicationTitle">
+        </div>
+
+
+        <label class="col-xs-4 control-label" for="">Publication body: </label>
+        <div class="col-xs-8">
+            <input type="text" style="width: 300px" class="form-control" required
+                [(ngModel)]="publication.body" name="publicationBody">
+        </div>
+
+
+
+        <label class="col-xs-4 control-label" for="">Publication date: </label>
+        <div class="col-xs-8">
+            <input type="date" style="width: 300px" class="form-control" required
+                [(ngModel)]="publication.date" name="publicationDate">
+        </div>
+
+
+        <label class="col-xs-4 control-label" for="">Publication time: </label>
+        <div class="col-xs-8">
+            <input type="time" style="width: 300px" class="form-control" required
+                [(ngModel)]="publication.time" name="publicationTime">
+        </div>
+
+        <div>
+        <input type="submit" value="Create" />
+        </div>        
+    </div>
+</form>
