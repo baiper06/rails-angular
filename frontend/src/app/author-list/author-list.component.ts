@@ -31,14 +31,14 @@ export class AuthorListComponent implements OnInit {
     var path = 'authors/' + id;
     this.apiService.delete(path).subscribe((r)=>{
 
-    this.rows = this.rows.filter((p,i)=>{
+    this.authors = this.authors.filter((p,i)=>{
 
         if(Number(id) === p.id ) 
         {
         return false;
         }
         return true;
-    },this.rows)
+    },this.authors)
 
     });
 
@@ -48,5 +48,12 @@ export class AuthorListComponent implements OnInit {
     console.log("update : " + id );
     this.router.navigateByUrl('/authors/add/' + id);
   }
+
+
+  public create(){
+    console.log("create" );
+    this.router.navigateByUrl('/authors/add/');
+  }
+
 
 }

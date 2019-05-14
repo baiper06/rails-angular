@@ -1,11 +1,27 @@
 <form (ngSubmit)="onSubmit()">
 
     <div class="form-group">
+
         <label class="col-xs-4 control-label" for="">Author name: </label>
         <div class="col-xs-8">
             <input type="text" style="width: 300px" class="form-control" required
                 [(ngModel)]="author.name" name="authorName">
         </div>
+
+
+        <label class="col-xs-4 control-label" for="">Author email: </label>
+        <div class="col-xs-8">
+            <input type="text" style="width: 300px" class="form-control" required
+                [(ngModel)]="author.email" name="authorEmail">
+        </div>
+
+
+        <label class="col-xs-4 control-label" for="">Author birth date: </label>
+        <div class="col-xs-8">
+            <input type="text" style="width: 300px" class="form-control" required
+                [(ngModel)]="author.birth_date" name="authorBirthDate">
+        </div>
+
         <div>
         <input type="submit" value="Create" />
         </div>        
