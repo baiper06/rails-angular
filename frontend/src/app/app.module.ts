@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthorAddComponent } from './author-add/author-add.component';
 import { AuthorListComponent } from './author-list/author-list.component';
+import { PublicationAddComponent } from './publication-add/publication-add.component';
+import { PublicationListComponent } from './publication-list/publication-list.component';
 
 /*Other imports*/
 import { ApiService } from './api.service';
@@ -16,7 +18,9 @@ import { ApiService } from './api.service';
   declarations: [
     AppComponent,
     AuthorAddComponent,
-    AuthorListComponent
+    AuthorListComponent,
+    PublicationAddComponent,
+    PublicationListComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,18 @@ import { ApiService } from './api.service';
 		  {
 		    path: 'authors/add/:id',
 		    component: AuthorAddComponent
+		  },
+		  {
+		    path: 'publications',
+		    component:PublicationListComponent
+		  },
+		  {
+		    path: 'publications/add',
+		    component: PublicationAddComponent
+		  },
+		  {
+		    path: 'publications/add/:id',
+		    component: PublicationAddComponent
 		  }    
 		]),
     FormsModule,
