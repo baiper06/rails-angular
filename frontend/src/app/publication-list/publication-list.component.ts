@@ -13,15 +13,13 @@ export class PublicationListComponent implements OnInit {
 
   public attributes = ['id', 'author', 'title', 'body', 'date', 'time'];
   public publications : Array<Publication>; 
+  public page = 1; 
 
   constructor(public apiService: ApiService , public router : Router) {
   }
 
   ngOnInit() {
-    this.apiService.get("publications").subscribe((data : Publication[])=>{
-    console.log(data);
-    this.publications = data;
-    });
+    this.refreshList();
   }
 
 
@@ -54,6 +52,27 @@ export class PublicationListComponent implements OnInit {
     console.log("create" );
     this.router.navigateByUrl('/publications/add/');
   }
+
+
+  public previousPage(){
+    this.page -= 1;
+    this.refreshList();
+  }
+
+  public nextPage(){
+    this.page += 1;
+    this.refreshList();
+  }
+
+
+  private refreshList(){
+    this.apiService.get("publications", {page: this.page}).subscribe((data : Publication[])=>{
+    console.log(data);
+    this.publications = data;
+    });
+  }
+
+
 
 
 }

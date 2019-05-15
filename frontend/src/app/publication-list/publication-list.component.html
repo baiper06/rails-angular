@@ -30,7 +30,22 @@
         </table>
 
 
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination justify-content-end">
+			<li class="page-item">
+			  <button (click)="previousPage()"  class="page-link">Previous page</button>
+			</li>
+			<li class="page-item">
+			  <button (click)="nextPage()"  class="page-link">Next page</button>
+			</li> 
+		  </ul>
+		</nav>
 
 	<button (click)="create()"  class="btn btn-success">Add new Publication</button>
+
+
+	
+
+
     </div>
 </div>

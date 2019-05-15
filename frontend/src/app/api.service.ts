@@ -15,9 +15,9 @@ export class ApiService {
 
 
   // read method    
-  public get(path) {
+  public get(path:string, params:any = {}) {
       var endpoint = this.API_URL + path;
-      return this.http.get(endpoint);
+      return this.http.get(endpoint, {params: params});
 
   }
 
