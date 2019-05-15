@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PublicationAddComponent implements OnInit {
 
   public publication : Publication  = new Publication();
+  public method : string;
 
   constructor(public apiService: ApiService , public acRoute : ActivatedRoute) { }
 
@@ -22,10 +23,12 @@ export class PublicationAddComponent implements OnInit {
         this.apiService.get("publications/"+data.id).subscribe((data : Publication)=>{
         this.publication = data;
         });
+       this.method = "Update"
     }
     else
     {
         this.publication = new Publication();
+        this.method = "Create"
     }
     })
   }
