@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthorAddComponent implements OnInit {
 
   public author : Author  = new Author();
+  public method : string;
 
   constructor(public apiService: ApiService , public acRoute : ActivatedRoute) { }
 
@@ -22,10 +23,12 @@ export class AuthorAddComponent implements OnInit {
         this.apiService.get("authors/"+data.id).subscribe((data : Author)=>{
         this.author = data;
         });
+        this.method = "Update"
     }
     else
     {
         this.author = new Author();
+        this.method = "Create"
     }
     })
   }

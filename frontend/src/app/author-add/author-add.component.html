@@ -1,29 +1,43 @@
+<h2 class="panel-heading">
+    {{method}} Author
+</h2>
+
+
+
 <form (ngSubmit)="onSubmit()">
 
-    <div class="form-group">
 
-        <label class="col-xs-4 control-label" for="">Author name: </label>
-        <div class="col-xs-8">
-            <input type="text" style="width: 300px" class="form-control" required
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="">Name: </label>
+    <div class="col-sm-10">
+	    <input type="text" class="form-control" required
                 [(ngModel)]="author.name" name="authorName">
-        </div>
-
-
-        <label class="col-xs-4 control-label" for="">Author email: </label>
-        <div class="col-xs-8">
-            <input type="text" style="width: 300px" class="form-control" required
-                [(ngModel)]="author.email" name="authorEmail">
-        </div>
-
-
-        <label class="col-xs-4 control-label" for="">Author birth date: </label>
-        <div class="col-xs-8">
-            <input type="text" style="width: 300px" class="form-control" required
-                [(ngModel)]="author.birth_date" name="authorBirthDate">
-        </div>
-
-        <div>
-        <input type="submit" value="Create" />
-        </div>        
     </div>
+  </div>
+
+
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="">Email: </label>
+    <div class="col-sm-10">
+	   <input type="text" class="form-control" required
+                [(ngModel)]="author.email" name="authorEmail">
+    </div>
+  </div>
+
+
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="">Birth date: </label>
+    <div class="col-sm-10">
+	    <input type="date" class="form-control" required
+                [(ngModel)]="author.birth_date" name="authorBirthDate">
+    </div>
+  </div>
+
+
+
+	<input type="submit" value="{{method}} Author" class="btn btn-primary" />
+
+
 </form>

@@ -1,10 +1,10 @@
 <div class="panel panel-default" style="margin-top:10px;">
-<div class="panel-heading">
+<h2 class="panel-heading">
     Publications
-</div>
+</h2>
 <div class="panel-body" style="position:relative">
     <div class="table-responsive">
-        <table class="table">
+        <table  class="table table-striped">
             <thead>
                 <tr>
                     <th *ngFor="let attribute of attributes">
@@ -20,15 +20,17 @@
 						{{publication[attribute]}}
                     </td>
                     <td>
-		                <button (click)="delete(publication['id'])">delete</button>
-		                <button (click)="update(publication['id'])">update</button>
+						<div class="btn-group" role="group">
+							<button (click)="update(publication['id'])" class="btn btn-info">update</button>
+							<button (click)="delete(publication['id'])" class="btn btn-danger">delete</button>
+						</div>
                     </td>
                 </tr>
             </tbody>
         </table>
 
 
-	<button (click)="create()">new</button>
 
+	<button (click)="create()"  class="btn btn-success">Add new Publication</button>
     </div>
 </div>
