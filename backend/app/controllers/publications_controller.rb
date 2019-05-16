@@ -5,7 +5,7 @@ class PublicationsController < ApplicationController
   def index
     @publications =  Publication.paginate( page: params[:page], per_page: 5)
 								.sorted_by(params[:sorted_by])
-
+								.search_query(params[:search_query])
     render json: @publications
   end
 
