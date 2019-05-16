@@ -13,9 +13,15 @@ export class PublicationListComponent implements OnInit {
 
   public attributes = ['id', 'author', 'title', 'body', 'date', 'time'];
   public publications : Array<Publication>; 
+  public authors : Array<Author>; 
   public page = 1; 
+  public sortedBy : string = "title_desc"; 
 
   constructor(public apiService: ApiService , public router : Router) {
+	this.apiService.get("authors").subscribe((data : Author[])=>{
+		console.log(data);
+		this.authors = data;
+		});
   }
 
   ngOnInit() {
@@ -65,8 +71,14 @@ export class PublicationListComponent implements OnInit {
   }
 
 
+  public getSortedBy(param:string){
+	console.log(param);
+    this.sortedBy = param;
+    this.refreshList();
+  }
+
   private refreshList(){
-    this.apiService.get("publications", {page: this.page}).subscribe((data : Publication[])=>{
+    this.apiService.get("publications", {'page': this.page, 'filterrific[sorted_by]': this.sortedBy}).subscribe((data : Publication[])=>{
     console.log(data);
     this.publications = data;
     });
