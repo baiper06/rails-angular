@@ -1,0 +1,36 @@
+<div class="panel panel-default" style="margin-top:10px;">
+<h2 class="panel-heading">
+    Authors
+</h2>
+<div class="panel-body" style="position:relative">
+    <div class="table-responsive">
+        <table  class="table table-striped">
+            <thead>
+                <tr>
+                    <th *ngFor="let attribute of attributes">
+						{{attribute}}
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let author of authors">
+                    <td *ngFor="let attribute of attributes">
+						{{author[attribute]}}
+                    </td>
+                    <td>
+						<div class="btn-group" role="group">
+							<button (click)="update(author['id'])" class="btn btn-info">update</button>
+							<button (click)="delete(author['id'])" class="btn btn-danger">delete</button>
+						</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+	<button (click)="create()"  class="btn btn-success">Add new Author</button>
+
+    </div>
+</div>
