@@ -78,7 +78,7 @@ export class PublicationListComponent implements OnInit {
   }
 
   private refreshList(){
-    this.apiService.get("publications", {'page': this.page, 'filterrific[sorted_by]': this.sortedBy}).subscribe((data : Publication[])=>{
+    this.apiService.get("publications", {'page': this.page, 'sorted_by': this.sortedBy}).subscribe((data : Publication[])=>{
     console.log(data);
     this.publications = data;
     });

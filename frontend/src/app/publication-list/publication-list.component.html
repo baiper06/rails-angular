@@ -1,14 +1,14 @@
 <div class="panel panel-default" style="margin-top:10px;">
 
   <div class="row">
-    <div class="col-3">
+    <div class="col-2">
 
 		<h2 class="panel-heading"> Authors </h2>
 			<p *ngFor="let author of authors">
                     {{author.name}}
               </p>
     </div>
-    <div class="col-9">
+    <div class="col-10">
 
 		<h2 class="panel-heading"> Publications </h2>
 
@@ -26,18 +26,20 @@
 						<div class="form-group">
 							<label class="font-weight-bold">Sorted by</label>
 							<select class="form-control" name="filterrific[sorted_by]" id="filterrific_sorted_by"  (change)="getSortedBy($event.target.value)">
-								<option value="name_asc">Name (a-z)</option>
-								<option value="name_desc">Name (z-a)</option>
+								<option value="title_asc">Title (a-z)</option>
+								<option value="title_desc">Title (z-a)</option>
 								<option value="date_desc">Date (newest first)</option>
 								<option value="date_asc">Date (oldest first)</option>
+								<option value="author_name_asc">Author Name (a-z)</option>
+								<option value="author_name_desc">Author Name  (z-a)</option>
+								<option value="author_email_desc">Author Email  (newest first)</option>
+								<option value="author_email_asc">Author Email  (oldest first)</option>
 							</select>
 						</div>
 					</div>
 				</div>
 			</form>
 		</div>
-
-
 
 		<div class="panel-body" style="position:relative">
 			<div class="table-responsive">
