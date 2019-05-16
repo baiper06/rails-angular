@@ -4,7 +4,7 @@
     <div class="col-2">
 
 		<h2 class="panel-heading"> Authors </h2>
-			<p class="badge badge-secondary"  (click)="cleanAuthorFilter()" >clean author filter</p>
+			<p class="badge badge-secondary" *ngIf="authorId !== ''"  (click)="cleanAuthorFilter()" >clean author filter</p>
 			<p *ngFor="let author of authors"  (click)="getByAuthor(author['id'])" > {{author.name}} </p>
     </div>
     <div class="col-10">
@@ -31,8 +31,8 @@
 								<option value="date_asc">Date (oldest first)</option>
 								<option value="author_name_asc">Author Name (a-z)</option>
 								<option value="author_name_desc">Author Name  (z-a)</option>
-								<option value="author_email_desc">Author Email  (newest first)</option>
-								<option value="author_email_asc">Author Email  (oldest first)</option>
+								<option value="author_email_asc">Author Email  (a-z)</option>
+								<option value="author_email_desc">Author Email  (z-a)</option>
 							</select>
 						</div>
 					</div>
@@ -54,12 +54,14 @@
 				    <tbody>
 
 				        <tr *ngFor="let publication of publications">
-				            <td *ngFor="let attribute of attributes">
-								{{publication[attribute]}}
-				            </td>
+				            <td> {{publication.author.name}} <small>{{publication.author.email}}</small>  </td>
+				            <td> {{publication.title}}  </td>
+				            <td> {{publication.body}}  </td>
+				            <td> {{publication.date}}  </td>
+				            <td> {{publication.time | date:"h:mma"}}</td>
 				            <td>
 								<div class="btn-group" role="group">
-									<button (click)="update(publication['id'])" class="btn btn-info">update</button>
+									<button (click)="update(publication['id'])" class="btn btn-info">update</button> 
 									<button (click)="delete(publication['id'])" class="btn btn-danger">delete</button>
 								</div>
 				            </td>

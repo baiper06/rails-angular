@@ -7,12 +7,12 @@ class PublicationsController < ApplicationController
 								.sorted_by(params[:sorted_by])
 								.search_query(params[:search_query])
 								.with_author_id(params[:author_id])
-    render json: @publications
+    render json: @publications.to_json(:include => :author)
   end
 
   # GET /publications/1
   def show
-    render json: @publication
+    render json: @publication.to_json(:include => :author)
   end
 
   # POST /publications

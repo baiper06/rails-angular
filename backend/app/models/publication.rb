@@ -39,7 +39,7 @@ class Publication < ApplicationRecord
       terms.map {
         or_clauses = [
           "LOWER( publications.title) LIKE ?",
-          "LOWER( publications.body) LIKE ?"
+          "LOWER( publications.title) LIKE ?"
         ].join(' OR ')
         "(#{ or_clauses })"
       }.join(' AND '),

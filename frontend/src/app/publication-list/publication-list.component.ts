@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Publication } from '../publication';
+import { Author } from '../author';
 
 
 @Component({
