@@ -3,7 +3,8 @@ class PublicationsController < ApplicationController
 
   # GET /publications
   def index
-    @publications = Publication.all.paginate(page: params[:page], per_page: 10)
+    @publications =  Publication.paginate( page: params[:page], per_page: 5)
+								.sorted_by(params[:sorted_by])
 
     render json: @publications
   end

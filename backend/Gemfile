@@ -51,6 +51,3 @@ gem 'will_paginate'
 # Faker generates data at random.
  gem 'faker'
 
-# Filterrific is a Rails Engine plugin that makes it easy to filter, search, and sort your ActiveRecord lists.
- gem 'filterrific'
-
