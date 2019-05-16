@@ -5,7 +5,7 @@ class AuthorsController < ApplicationController
   def index
     @authors = Author.all
 
-    render json: @authors
+    render json: @authors.order('name') 
   end
 
   # GET /authors/1

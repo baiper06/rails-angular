@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Publication } from '../publication';
+import { Author } from '../author';
 
 
 @Component({
@@ -11,11 +12,19 @@ import { Publication } from '../publication';
 })
 export class PublicationListComponent implements OnInit {
 
-  public attributes = ['id', 'author', 'title', 'body', 'date', 'time'];
+  public attributes = ['author', 'title', 'body', 'date', 'time'];
   public publications : Array<Publication>; 
+  public authors : Array<Author>; 
   public page = 1; 
+  public sortedBy : string = "title_asc"; 
+  public searchQuery : string = ""; 
+  public authorId : string = ""; 
 
   constructor(public apiService: ApiService , public router : Router) {
+	this.apiService.get("authors").subscribe((data : Author[])=>{
+		console.log(data);
+		this.authors = data;
+		});
   }
 
   ngOnInit() {
@@ -65,14 +74,39 @@ export class PublicationListComponent implements OnInit {
   }
 
 
-  private refreshList(){
-    this.apiService.get("publications", {page: this.page}).subscribe((data : Publication[])=>{
-    console.log(data);
-    this.publications = data;
-    });
+  public getSortedBy(param:string){
+	console.log(param);
+    this.sortedBy = param;
+    this.refreshList();
+  }
+
+  public getSearchQuery(param:string){
+	console.log(param);
+    this.searchQuery = param;
+    this.refreshList();
+  }
+
+  public getByAuthor(id:string){
+	console.log(id);
+    this.authorId = id;
+    this.refreshList();
+  }
+
+  public cleanAuthorFilter(){
+    this.authorId = "";
+    this.refreshList();
   }
 
 
-
+  private refreshList(){
+    this.apiService.get("publications", {	'page': this.page, 
+											'sorted_by': this.sortedBy, 
+											'search_query': this.searchQuery, 
+											'author_id': this.authorId }
+						).subscribe((data : Publication[])=>{
+															console.log(data);
+															this.publications = data;
+															});
+  }
 
 }

@@ -1,51 +1,94 @@
 <div class="panel panel-default" style="margin-top:10px;">
-<h2 class="panel-heading">
-    Publications
-</h2>
-<div class="panel-body" style="position:relative">
-    <div class="table-responsive">
-        <table  class="table table-striped">
-            <thead>
-                <tr>
-                    <th *ngFor="let attribute of attributes">
-						{{attribute}}
-                    </th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                <tr *ngFor="let publication of publications">
-                    <td *ngFor="let attribute of attributes">
-						{{publication[attribute]}}
-                    </td>
-                    <td>
-						<div class="btn-group" role="group">
-							<button (click)="update(publication['id'])" class="btn btn-info">update</button>
-							<button (click)="delete(publication['id'])" class="btn btn-danger">delete</button>
+  <div class="row">
+    <div class="col-2">
+
+		<h2 class="panel-heading"> Authors </h2>
+			<p class="badge badge-secondary" *ngIf="authorId !== ''"  (click)="cleanAuthorFilter()" >clean author filter</p>
+			<p *ngFor="let author of authors"  (click)="getByAuthor(author['id'])" > {{author.name}} </p>
+    </div>
+    <div class="col-10">
+
+		<h2 class="panel-heading"> Publications </h2>
+
+		<div class="card card-body bg-light">
+			<form class="new_filter" id="filter" action="" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="font-weight-bold">Search</label>
+							<input class="form-control" type="text" name="filter[search_query]" id="filter_search_query"  (input)="getSearchQuery($event.target.value)">
 						</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="font-weight-bold">Sorted by</label>
+							<select class="form-control" name="filter[sorted_by]" id="filter_sorted_by"  (change)="getSortedBy($event.target.value)">
+								<option value="title_asc">Title (a-z)</option>
+								<option value="title_desc">Title (z-a)</option>
+								<option value="date_desc">Date (newest first)</option>
+								<option value="date_asc">Date (oldest first)</option>
+								<option value="author_name_asc">Author Name (a-z)</option>
+								<option value="author_name_desc">Author Name  (z-a)</option>
+								<option value="author_email_asc">Author Email  (a-z)</option>
+								<option value="author_email_desc">Author Email  (z-a)</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="panel-body" style="position:relative">
+			<div class="table-responsive">
+				<table  class="table table-striped">
+				    <thead>
+				        <tr>
+				            <th *ngFor="let attribute of attributes">
+								{{attribute}}
+				            </th>
+				            <th>Actions</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+
+				        <tr *ngFor="let publication of publications">
+				            <td> {{publication.author.name}} <small>{{publication.author.email}}</small>  </td>
+				            <td> {{publication.title}}  </td>
+				            <td> {{publication.body}}  </td>
+				            <td> {{publication.date}}  </td>
+				            <td> {{publication.time | date:"h:mma"}}</td>
+				            <td>
+								<div class="btn-group" role="group">
+									<button (click)="update(publication['id'])" class="btn btn-info">update</button> 
+									<button (click)="delete(publication['id'])" class="btn btn-danger">delete</button>
+								</div>
+				            </td>
+				        </tr>
+				    </tbody>
+				</table>
 
 
-		<nav aria-label="Page navigation example">
-		  <ul class="pagination justify-content-end">
-			<li class="page-item">
-			  <button (click)="previousPage()"  class="page-link">Previous page</button>
-			</li>
-			<li class="page-item">
-			  <button (click)="nextPage()"  class="page-link">Next page</button>
-			</li> 
-		  </ul>
-		</nav>
-
-	<button (click)="create()"  class="btn btn-success">Add new Publication</button>
-
-
-	
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-end">
+					<li class="page-item">
+					  <button (click)="previousPage()"  class="page-link">Previous page</button>
+					</li>
+					<li class="page-item">
+					  <button (click)="nextPage()"  class="page-link">Next page</button>
+					</li> 
+				  </ul>
+				</nav>
+				<button (click)="create()"  class="btn btn-success">Add new Publication</button>
+			</div>
+		</div>
 
 
     </div>
 </div>
+
+
+
+
+

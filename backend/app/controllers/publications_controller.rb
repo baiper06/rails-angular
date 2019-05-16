@@ -3,14 +3,16 @@ class PublicationsController < ApplicationController
 
   # GET /publications
   def index
-    @publications = Publication.all.paginate(page: params[:page], per_page: 10)
-
-    render json: @publications
+    @publications =  Publication.paginate( page: params[:page], per_page: 5)
+								.sorted_by(params[:sorted_by])
+								.search_query(params[:search_query])
+								.with_author_id(params[:author_id])
+    render json: @publications.to_json(:include => :author)
   end
 
   # GET /publications/1
   def show
-    render json: @publication
+    render json: @publication.to_json(:include => :author)
   end
 
   # POST /publications
