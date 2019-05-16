@@ -47,5 +47,9 @@ class Publication < ApplicationRecord
     )
   }
 
+  scope :with_author_id, ->(author_ids) {
+	return nil  if author_ids.blank?
+    where(:author_id => [*author_ids])
+  }
 
 end
