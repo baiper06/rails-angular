@@ -4,9 +4,8 @@
     <div class="col-2">
 
 		<h2 class="panel-heading"> Authors </h2>
-			<p *ngFor="let author of authors">
-                    {{author.name}}
-              </p>
+			<p class="badge badge-secondary"  (click)="cleanAuthorFilter()" >clean author filter</p>
+			<p *ngFor="let author of authors"  (click)="getByAuthor(author['id'])" > {{author.name}} </p>
     </div>
     <div class="col-10">
 
