@@ -15,7 +15,8 @@ export class PublicationListComponent implements OnInit {
   public publications : Array<Publication>; 
   public authors : Array<Author>; 
   public page = 1; 
-  public sortedBy : string = "title_desc"; 
+  public sortedBy : string = "title_asc"; 
+  public searchQuery : string = ""; 
 
   constructor(public apiService: ApiService , public router : Router) {
 	this.apiService.get("authors").subscribe((data : Author[])=>{
@@ -77,14 +78,20 @@ export class PublicationListComponent implements OnInit {
     this.refreshList();
   }
 
-  private refreshList(){
-    this.apiService.get("publications", {'page': this.page, 'sorted_by': this.sortedBy}).subscribe((data : Publication[])=>{
-    console.log(data);
-    this.publications = data;
-    });
+  public getSearchQuery(param:string){
+	console.log(param);
+    this.searchQuery = param;
+    this.refreshList();
   }
 
-
-
+  private refreshList(){
+    this.apiService.get("publications", {	'page': this.page, 
+											'sorted_by': this.sortedBy, 
+											'search_query': this.searchQuery }
+						).subscribe((data : Publication[])=>{
+															console.log(data);
+															this.publications = data;
+															});
+  }
 
 }

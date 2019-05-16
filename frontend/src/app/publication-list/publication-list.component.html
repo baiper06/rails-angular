@@ -13,19 +13,19 @@
 		<h2 class="panel-heading"> Publications </h2>
 
 		<div class="card card-body bg-light">
-			<form class="new_filterrific" id="filterrific_filter" action="/students" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+			<form class="new_filter" id="filter" action="" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="font-weight-bold">Search</label>
-							<input class="filterrific-periodically-observed form-control" type="text" name="filterrific[search_query]" id="filterrific_search_query">
+							<input class="form-control" type="text" name="filter[search_query]" id="filter_search_query"  (input)="getSearchQuery($event.target.value)">
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="font-weight-bold">Sorted by</label>
-							<select class="form-control" name="filterrific[sorted_by]" id="filterrific_sorted_by"  (change)="getSortedBy($event.target.value)">
+							<select class="form-control" name="filter[sorted_by]" id="filter_sorted_by"  (change)="getSortedBy($event.target.value)">
 								<option value="title_asc">Title (a-z)</option>
 								<option value="title_desc">Title (z-a)</option>
 								<option value="date_desc">Date (newest first)</option>
