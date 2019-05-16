@@ -1,51 +1,91 @@
 <div class="panel panel-default" style="margin-top:10px;">
-<h2 class="panel-heading">
-    Publications
-</h2>
-<div class="panel-body" style="position:relative">
-    <div class="table-responsive">
-        <table  class="table table-striped">
-            <thead>
-                <tr>
-                    <th *ngFor="let attribute of attributes">
-						{{attribute}}
-                    </th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
 
-                <tr *ngFor="let publication of publications">
-                    <td *ngFor="let attribute of attributes">
-						{{publication[attribute]}}
-                    </td>
-                    <td>
-						<div class="btn-group" role="group">
-							<button (click)="update(publication['id'])" class="btn btn-info">update</button>
-							<button (click)="delete(publication['id'])" class="btn btn-danger">delete</button>
+  <div class="row">
+    <div class="col-3">
+
+		<h2 class="panel-heading"> Authors </h2>
+			<p *ngFor="let author of authors">
+                    {{author.name}}
+              </p>
+    </div>
+    <div class="col-9">
+
+		<h2 class="panel-heading"> Publications </h2>
+
+		<div class="card card-body bg-light">
+			<form class="new_filterrific" id="filterrific_filter" action="/students" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="font-weight-bold">Search</label>
+							<input class="filterrific-periodically-observed form-control" type="text" name="filterrific[search_query]" id="filterrific_search_query">
 						</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="font-weight-bold">Sorted by</label>
+							<select class="form-control" name="filterrific[sorted_by]" id="filterrific_sorted_by"  (change)="getSortedBy($event.target.value)">
+								<option value="name_asc">Name (a-z)</option>
+								<option value="name_desc">Name (z-a)</option>
+								<option value="date_desc">Date (newest first)</option>
+								<option value="date_asc">Date (oldest first)</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 
 
-		<nav aria-label="Page navigation example">
-		  <ul class="pagination justify-content-end">
-			<li class="page-item">
-			  <button (click)="previousPage()"  class="page-link">Previous page</button>
-			</li>
-			<li class="page-item">
-			  <button (click)="nextPage()"  class="page-link">Next page</button>
-			</li> 
-		  </ul>
-		</nav>
 
-	<button (click)="create()"  class="btn btn-success">Add new Publication</button>
+		<div class="panel-body" style="position:relative">
+			<div class="table-responsive">
+				<table  class="table table-striped">
+				    <thead>
+				        <tr>
+				            <th *ngFor="let attribute of attributes">
+								{{attribute}}
+				            </th>
+				            <th>Actions</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+
+				        <tr *ngFor="let publication of publications">
+				            <td *ngFor="let attribute of attributes">
+								{{publication[attribute]}}
+				            </td>
+				            <td>
+								<div class="btn-group" role="group">
+									<button (click)="update(publication['id'])" class="btn btn-info">update</button>
+									<button (click)="delete(publication['id'])" class="btn btn-danger">delete</button>
+								</div>
+				            </td>
+				        </tr>
+				    </tbody>
+				</table>
 
 
-	
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-end">
+					<li class="page-item">
+					  <button (click)="previousPage()"  class="page-link">Previous page</button>
+					</li>
+					<li class="page-item">
+					  <button (click)="nextPage()"  class="page-link">Next page</button>
+					</li> 
+				  </ul>
+				</nav>
+				<button (click)="create()"  class="btn btn-success">Add new Publication</button>
+			</div>
+		</div>
 
 
     </div>
 </div>
+
+
+
+
+
